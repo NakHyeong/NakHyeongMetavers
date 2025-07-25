@@ -5,45 +5,69 @@ using UnityEngine;
 // 모든 캐릭터(플레이어, NPC 등)의 공통 동작을 처리하는 기본 클래스
 public class BaseController : MonoBehaviour
 {
-    // 이동 방향
+    protected Rigidbody2D _rigidbody;
+    [SerializeField] private SpriteRenderer characterRenderer;
+
     protected Vector2 movementDirection = Vector2.zero;
+    [SerializeField] private float moveSpeed = 3f;
 
-    // 바라보는 방향 (마우스 방향 등)
-    protected Vector2 lookDirection = Vector2.zero;
+    protected virtual void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
-    // Rigidbody2D 참조 (물리 이동을 위한)
-    protected Rigidbody2D rigid;
-
-    // 시작 시 호출되는 메서드 (PlayerController에서 override 가능)
     protected virtual void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
     }
 
-    // 매 프레임마다 호출됨 (입력 처리용)
-    protected virtual void HandleAction()
-    {
-        // 자식 클래스에서 구현할 예정 (PlayerController 등)
-    }
-
-    // 물리 업데이트 처리
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
-    // 실제 이동 처리
-    protected void Move()
-    {
-        if (movementDirection != Vector2.zero)
-        {
-            rigid.MovePosition(rigid.position + movementDirection * Time.fixedDeltaTime * 5f);
-        }
-    }
-
-    // 매 프레임마다 호출되는 업데이트 (입력 처리 연결)
     private void Update()
     {
         HandleAction();
+
+        // 이동 방향이 있을 때, 좌우 반전 처리
+        if (movementDirection != Vector2.zero)
+            FlipSpriteByDirection(movementDirection);
+    }
+
+    protected virtual void HandleAction()
+    {
+        // 기본 입력 처리 (WASD + 점프)
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        movementDirection = new Vector2(x, y);
+    }
+
+    private void FixedUpdate()
+    {
+        Move(movementDirection);
+    }
+
+    protected void Move(Vector2 direction)
+    {
+        // 방향 입력 (WASD)
+        float moveX = direction.x;
+        float moveY = direction.y;
+
+        Vector2 velocity;
+
+        if (IsGrounded())
+        {
+            velocity = new Vector2(moveX, moveY).normalized * moveSpeed;
+            _rigidbody.velocity = velocity;
+        }
+        else
+        {
+            float currentY = _rigidbody.velocity.y;
+            velocity = new Vector2(moveX, 0f).normalized * moveSpeed;
+            _rigidbody.velocity = new Vector2(velocity.x, currentY);
+        }
+
+    }
+    protected virtual bool IsGrounded() => false;
+
+    private void FlipSpriteByDirection(Vector2 direction)
+    {
+        if (direction.x != 0)
+            characterRenderer.flipX = direction.x < 0;
     }
 }

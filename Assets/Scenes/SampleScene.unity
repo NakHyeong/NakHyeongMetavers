@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 27734466}
   - component: {fileID: 27734468}
   - component: {fileID: 27734467}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2386,7 +2386,7 @@ GameObject:
   - component: {fileID: 836761190}
   - component: {fileID: 836761192}
   - component: {fileID: 836761191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2866,7 +2866,8 @@ GameObject:
   - component: {fileID: 848388146}
   - component: {fileID: 848388148}
   - component: {fileID: 848388147}
-  m_Layer: 0
+  - component: {fileID: 848388149}
+  m_Layer: 7
   m_Name: Conllision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4599,6 +4600,42 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &848388149
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848388145}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &1033800018
 GameObject:
   m_ObjectHideFlags: 0
@@ -4609,7 +4646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1033800020}
   - component: {fileID: 1033800019}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4656,7 +4693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1047901300}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4690,7 +4727,8 @@ GameObject:
   - component: {fileID: 1937714303}
   - component: {fileID: 1937714302}
   - component: {fileID: 1937714301}
-  m_Layer: 0
+  - component: {fileID: 1937714304}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4757,7 +4795,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -4767,7 +4805,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &1937714303
 Transform:
@@ -4785,6 +4823,22 @@ Transform:
   - {fileID: 2039880490}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1937714304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937714300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d624dae7ae7a04408a7b3dd733746ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 2039880492}
+  moveSpeed: 3
+  animator: {fileID: 0}
+  jumpForce: 5
 --- !u!1 &2011719621
 GameObject:
   m_ObjectHideFlags: 0
@@ -4796,7 +4850,7 @@ GameObject:
   - component: {fileID: 2011719622}
   - component: {fileID: 2011719624}
   - component: {fileID: 2011719623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13012,7 +13066,7 @@ GameObject:
   - component: {fileID: 2039880490}
   - component: {fileID: 2039880492}
   - component: {fileID: 2039880491}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
