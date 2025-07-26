@@ -53,8 +53,12 @@ public class RunPlayer : MonoBehaviour
             isGrounded = false; // 점프 직후엔 공중 상태
         }
 
-        // 애니메이션 처리
-        _animator.SetBool("IsGrounded", isGrounded);
+        // 점프 애니메이션 시작
+        _animator.SetBool("IsJump", true);
+
+        // 달리기 애니메이션 처리
+        // x축 속도가 0.1 이상이면 달리기 애니메이션 활성화
+        _animator.SetBool("IsMove", _rigidbody.velocity.x > 0.1f);
     }
 
     // 바닥과 충돌하면 착지
@@ -63,6 +67,9 @@ public class RunPlayer : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             isGrounded = true;
+
+            // 점프 애니메이션 종료 (착지)
+            _animator.SetBool("IsJump", false);
         }
 
         if (collision.collider.CompareTag("Hole"))
