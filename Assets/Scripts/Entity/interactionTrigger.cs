@@ -7,28 +7,15 @@ public class InteractionTrigger : MonoBehaviour
 {
     [SerializeField] private string sceneNameToLoad;
 
-    private bool isPlayerInRange = false;
-
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Player"))
         {
             SceneManager.LoadScene(sceneNameToLoad);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-            isPlayerInRange = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-            isPlayerInRange = false;
-    }
 }
+
 
 //상호작용 가능한 오브젝트에 BoxCollider2D (IsTrigger 체크) 추가
 //위 스크립트 붙이기
