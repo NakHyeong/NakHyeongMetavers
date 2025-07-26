@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerController : BaseController
 {
     [SerializeField] private SpriteRenderer characterRenderer;
-    [SerializeField] private float jumpHeight = 8f;      // 점프 높이 (y축 속도 값)
-    [SerializeField] private float jumpDuration = 1.2f;  // 점프 지속 시간
+    [SerializeField] private float jumpHeight = 5f;      // 점프 높이 (y축 속도 값)
+    [SerializeField] private float jumpDuration = 0.8f;  // 점프 지속 시간
 
     // 점프 애니메이션용 상태
     private bool isJumping = false; // 점프 중인이 여부
