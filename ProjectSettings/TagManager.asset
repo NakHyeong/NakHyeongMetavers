@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Hole
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Player
   - Level
   - Ground
-  - 
+  - BackGround
   - 
   - 
   - 

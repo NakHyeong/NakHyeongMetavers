@@ -27,7 +27,14 @@ public class RunPlayer : MonoBehaviour
 
     void Update()
     {
-        if (isDead) return;
+        if (isDead)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                GameManager.Instance.RestartGame();
+            }
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
