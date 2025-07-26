@@ -6,68 +6,80 @@ using UnityEngine;
 public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
-    [SerializeField] private SpriteRenderer characterRenderer;
-
     protected Vector2 movementDirection = Vector2.zero;
-    [SerializeField] private float moveSpeed = 3f;
+    protected AnimationHandler animationHandler;
+
+    [SerializeField] protected float moveSpeed = 5f;   // 이동 속도
+    [SerializeField] protected float jumpForce = 10f;  // 점프 힘
+    [SerializeField] protected Transform groundCheck;  // 땅에 닿았는지 체크할 위치
+    [SerializeField] protected LayerMask groundLayer;  // 땅 레이어
+    [SerializeField] protected float groundCheckRadius = 0.2f; // 체크 범위 반지름
+
+    protected bool isGrounded;  // 착지 여부
+    protected bool isJumping;   // 점프 중인지 여부
 
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        animationHandler = GetComponent<AnimationHandler>();
     }
 
     protected virtual void Start()
     {
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         HandleAction();
-
-        // 이동 방향이 있을 때, 좌우 반전 처리
-        if (movementDirection != Vector2.zero)
-            FlipSpriteByDirection(movementDirection);
+        Jump();
+        CheckGround();
     }
 
+    // 이동 처리
+    // 입력 처리 (이동 방향 설정 등)
     protected virtual void HandleAction()
     {
-        // 기본 입력 처리 (WASD + 점프)
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        movementDirection = new Vector2(x, y);
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        Vector2 move = new Vector2(horizontal, vertical).normalized;
+
+        _rigidbody.velocity = new Vector2(move.x * moveSpeed, _rigidbody.velocity.y);
+        animationHandler.Move(move);
     }
 
-    private void FixedUpdate()
+    // 점프 처리
+    protected virtual void Jump()
     {
-        Move(movementDirection);
-    }
-
-    protected void Move(Vector2 direction)
-    {
-        // 방향 입력 (WASD)
-        float moveX = direction.x;
-        float moveY = direction.y;
-
-        Vector2 velocity;
-
-        if (IsGrounded())
+        // 스페이스바 누르고 착지 상태면 점프
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity = new Vector2(moveX, moveY).normalized * moveSpeed;
-            _rigidbody.velocity = velocity;
-        }
-        else
-        {
-            float currentY = _rigidbody.velocity.y;
-            velocity = new Vector2(moveX, 0f).normalized * moveSpeed;
-            _rigidbody.velocity = new Vector2(velocity.x, currentY);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpForce);
+            isJumping = true;
+            animationHandler.Jump(true); // 점프 애니메이션 true
         }
 
+        // 땅에 닿으면 점프 종료 처리
+        if (isGrounded && isJumping)
+        {
+            isJumping = false;
+            animationHandler.Jump(false); // 점프 애니메이션 false
+        }
     }
-    protected virtual bool IsGrounded() => false;
 
-    private void FlipSpriteByDirection(Vector2 direction)
+    // 땅에 닿았는지 체크
+    protected virtual void CheckGround()
     {
-        if (direction.x != 0)
-            characterRenderer.flipX = direction.x < 0;
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+
+    // 착지 판정 디버그용 (에디터에서만 보임)
+    protected virtual void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
     }
 }

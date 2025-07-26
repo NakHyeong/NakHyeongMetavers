@@ -6,45 +6,21 @@ using UnityEngine;
 public class PlayerController : BaseController
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private SpriteRenderer characterRenderer;
     // 시작 시 호출됨
     protected override void Start()
     {
         base.Start();
     }
-
-    // 키보드 입력 처리
-    protected override void HandleAction()
+    protected override void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        // 입력된 방향을 정규화해서 이동 방향으로 설정
-        movementDirection = new Vector2(horizontal, vertical).normalized;
-
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
-        {
-            Jump();
-        }
+        base.Update();
+        FlipSpriteByDirection(movementDirection);
     }
 
-    protected void Jump()
+    private void FlipSpriteByDirection(Vector2 direction)
     {
-        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0); // 수직 속도 초기화
-        _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-        if (animator != null)
-            animator.SetTrigger("Jump");
-    }
-
-    protected bool IsGrounded()
-    {
-        Vector2 origin = transform.position;
-        Vector2 direction = Vector2.down;
-        float distance = 0.2f;
-
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, distance, LayerMask.GetMask("Ground"));
-
-        return hit.collider != null;
+        if (direction.x != 0)
+            characterRenderer.flipX = direction.x < 0;
     }
 }
