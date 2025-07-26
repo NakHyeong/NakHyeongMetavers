@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class interactionTrigger : MonoBehaviour
+public class InteractionTrigger : MonoBehaviour
 {
     [SerializeField] private string sceneNameToLoad;
 
@@ -30,7 +30,7 @@ public class interactionTrigger : MonoBehaviour
     }
 }
 
-//»óÈ£ÀÛ¿ë °¡´ÉÇÑ ¿ÀºêÁ§Æ®¿¡ BoxCollider2D (IsTrigger Ã¼Å©) Ãß°¡
-//À§ ½ºÅ©¸³Æ® ºÙÀÌ±â
-//sceneNameToLoad¿¡ ÀÌµ¿ÇÒ ¾À ÀÌ¸§ ÀÔ·Â
+//ìƒí˜¸ì‘ìš© ê°€ëŠ¥í•œ ì˜¤ë¸Œì íŠ¸ì— BoxCollider2D (IsTrigger ì²´í¬) ì¶”ê°€
+//ìœ„ ìŠ¤í¬ë¦½íŠ¸ ë¶™ì´ê¸°
+//sceneNameToLoadì— ì´ë™í•  ì”¬ ì´ë¦„ ì…ë ¥
 
