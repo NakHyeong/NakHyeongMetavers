@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class RunPlayer : MonoBehaviour
 {
@@ -10,38 +8,49 @@ public class RunPlayer : MonoBehaviour
     public float jumpForce = 7f;
     public float moveSpeed = 3f;
 
-    private bool isGrounded = false;
+    public bool isDead = false;
+    private float deathCooldown = 0f;
+
     private bool isJumpPressed = false;
-    private bool isDead = false;
+    private bool isGrounded = false;  // ì¶”ê°€
+
+    GameManager gameManager;
 
     void Start()
     {
+        gameManager = GameManager.Instance;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
 
         if (_rigidbody == null)
-            Debug.LogError("Rigidbody2D°¡ ¾ø½À´Ï´Ù.");
+            Debug.LogError("Rigidbody2Dê°€ ì—†ìŠµë‹ˆë‹¤.");
         if (_animator == null)
-            Debug.LogError("Animator°¡ ¾ø½À´Ï´Ù.");
+            Debug.LogError("Animatorê°€ ì—†ìŠµë‹ˆë‹¤.");
     }
 
     void Update()
     {
         if (isDead)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            if (deathCooldown > 0f)
             {
-                GameManager.Instance.RestartGame();
+                deathCooldown -= Time.deltaTime;
+
+                // ì¿¨ë‹¤ìš´ì´ 0 ì´í•˜ë¡œ ë–¨ì–´ì§€ë©´ GameOver ì‹¤í–‰
+                if (deathCooldown <= 0f)
+                {
+                    gameManager.GameOver();
+                }
             }
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
-            if (isGrounded)
-            {
-                isJumpPressed = true;
-            }
+            if (!isGrounded) 
+                return;
+
+            isJumpPressed = true;
         }
     }
 
@@ -49,47 +58,45 @@ public class RunPlayer : MonoBehaviour
     {
         if (isDead) return;
 
-        // Ç×»ó ¾ÕÀ¸·Î ÀÌµ¿
-        _rigidbody.velocity = new Vector2(moveSpeed, _rigidbody.velocity.y);
+        Vector2 velocity = _rigidbody.velocity;
+        velocity.x = moveSpeed;
 
-        // Á¡ÇÁ Ã³¸®
         if (isJumpPressed)
         {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpForce);
+            velocity.y = jumpForce;
             isJumpPressed = false;
-            isGrounded = false; // Á¡ÇÁ Á÷ÈÄ¿£ °øÁß »óÅÂ
+            isGrounded = false; // ì í”„í•˜ë©´ ê³µì¤‘ ìƒíƒœë¡œ
         }
 
-        // Á¡ÇÁ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÀÛ
-        _animator.SetBool("IsJump", true);
+        _rigidbody.velocity = velocity;
 
-        // ´Ş¸®±â ¾Ö´Ï¸ŞÀÌ¼Ç Ã³¸®
-        // xÃà ¼Óµµ°¡ 0.1 ÀÌ»óÀÌ¸é ´Ş¸®±â ¾Ö´Ï¸ŞÀÌ¼Ç È°¼ºÈ­
-        _animator.SetBool("IsMove", _rigidbody.velocity.x > 0.1f);
+        _animator.SetBool("IsJump", !isGrounded);
+        _animator.SetBool("IsMove", moveSpeed > 0);
     }
 
-    // ¹Ù´Ú°ú Ãæµ¹ÇÏ¸é ÂøÁö
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (isDead) return;
+
+        if (other.CompareTag("Ground"))
         {
             isGrounded = true;
-
-            // Á¡ÇÁ ¾Ö´Ï¸ŞÀÌ¼Ç Á¾·á (ÂøÁö)
-            _animator.SetBool("IsJump", false);
         }
 
-        if (collision.collider.CompareTag("Hole"))
+        if (other.CompareTag("Hole"))
         {
-            Debug.Log("±¸¸Û¿¡ ºüÁ³½À´Ï´Ù!");
             Die();
         }
     }
 
-    void Die()
+    private void Die()
     {
+        if (isDead) return;
+
         isDead = true;
-        _animator.SetTrigger("Die");
+        deathCooldown = 3f;
+
+        _animator.SetTrigger("IsDie");
         _rigidbody.velocity = Vector2.zero;
         _rigidbody.bodyType = RigidbodyType2D.Static;
     }
