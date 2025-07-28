@@ -6,22 +6,22 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI restartText;
+    public GameObject restartButton;
 
     void Start()
     {
-        if (restartText == null)
+        if (restartButton == null)
             Debug.LogError("restart text is null");
 
         if (scoreText == null)
             Debug.LogError("score text is null");
 
-        restartText.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
     }
 
     public void SetRestart()
     {
-        restartText.gameObject.SetActive(true);
+        restartButton.SetActive(true);
     }
 
     public void UpdateScore(int score)

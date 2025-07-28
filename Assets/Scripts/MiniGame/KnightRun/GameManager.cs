@@ -14,8 +14,9 @@ public class GameManager : MonoBehaviour
     UIManager uiManager; // UIManager 인스턴스
 
     public UIManager UIManager { get { return uiManager; } } // 외부에서 읽기 전용으로 제공
-
+    public bool IsGameOver { get { return isGameOver; } }
     private bool isGameOver = false;
+
 
     private void Awake()
     {
@@ -26,8 +27,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         uiManager.UpdateScore(0); // 게임 시작 시 0점으로 UI 초기화
+        Time.timeScale = 1f; // 혹시 이전에 0으로 멈췄다면 다시 정상화
+        isGameOver = false;   // 게임 시작 시 게임오버 초기화
     }
-
     public void AddScore(int score)
     {
         currentScore += score;
@@ -49,5 +51,21 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // 현재 씬 다시 불러옴
+    }
+
+
+    public void ExitToZEP()
+    {
+        Time.timeScale = 1f; // 씬 전환 전 시간 정지 해제
+        SceneManager.LoadScene("MainGame");
+    }
+
+    public void EndGame()
+    {
+        // ScoreManager의 최고 점수 저장 호출 
+        ScoreManager.Instance.SaveHighScore();
+
+        // ScoreManager에 마지막 점수 저장 호출
+        ScoreManager.Instance.SaveLastScore();
     }
 }

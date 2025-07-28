@@ -6,13 +6,17 @@ public class RunPlayer : MonoBehaviour
     private Animator _animator;
 
     public float jumpForce = 7f;
-    public float moveSpeed = 3f;
+    public float moveSpeed = 5f;
 
     public bool isDead = false;
     private float deathCooldown = 0f;
 
     private bool isJumpPressed = false;
-    private bool isGrounded = false;  // 추가
+    private bool isGrounded = false;
+
+    private bool isGameOver = false; // 게임오버 상태 체크
+
+    public bool godMode = false;
 
     GameManager gameManager;
 
@@ -85,10 +89,16 @@ public class RunPlayer : MonoBehaviour
 
         if (other.CompareTag("Hole"))
         {
-            Die();
+            if (!godMode)  // 무적 모드가 아니면 죽음 처리
+            {
+                Die();
+            }
+            else
+            {
+                Debug.Log("GodMode 활성화 중, 구멍 통과!");
+            }
         }
     }
-
     private void Die()
     {
         if (isDead) return;
