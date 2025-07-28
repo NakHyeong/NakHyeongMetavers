@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-    // GroundÀÇ ±æÀÌ
+    // Groundì˜ ê¸¸ì´
     public float groundWidth = 3f;
 
     private void Awake()
     {
-        // ÀÚ½Ä ¿ÀºêÁ§Æ® Áß SpriteRenderer¸¦ Ã£¾Æ¼­ groundWidth¸¦ ¼³Á¤
+        // ìì‹ ì˜¤ë¸Œì íŠ¸ ì¤‘ SpriteRendererë¥¼ ì°¾ì•„ì„œ groundWidthë¥¼ ì„¤ì •
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         if (sr != null)
         {
@@ -17,16 +17,16 @@ public class Ground : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"{gameObject.name}¿¡ ÀÚ½Ä SpriteRenderer°¡ ¾ø½À´Ï´Ù.");
-            groundWidth = 3f; // ±âº»°ª ÇÒ´ç
+            Debug.LogWarning($"{gameObject.name}ì— ìì‹ SpriteRendererê°€ ì—†ìŠµë‹ˆë‹¤.");
+            groundWidth = 3f; // ê¸°ë³¸ê°’ í• ë‹¹
         }
     }
 
-    // À§Ä¡ Àç¹èÄ¡ ÇÔ¼ö: ÀÌÀü À§Ä¡¸¦ ¹Ş¾Æ¼­ ÀÏÁ¤ °Å¸® ¿À¸¥ÂÊ¿¡ À§Ä¡½ÃÅ°±â
+    // ìœ„ì¹˜ ì¬ë°°ì¹˜ í•¨ìˆ˜: ì´ì „ ìœ„ì¹˜ë¥¼ ë°›ì•„ì„œ ì¼ì • ê±°ë¦¬ ì˜¤ë¥¸ìª½ì— ìœ„ì¹˜ì‹œí‚¤ê¸°
     public Vector3 SetRandomPlace(Vector3 lastPos)
     {
         Vector3 newPos = lastPos;
-        newPos.x += groundWidth; // ÀÏÁ¤ °Å¸® ¿À¸¥ÂÊ ÀÌµ¿
+        newPos.x += groundWidth; // ì¼ì • ê±°ë¦¬ ì˜¤ë¥¸ìª½ ì´ë™
 
         transform.position = newPos;
         return newPos;

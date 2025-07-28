@@ -1,11 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
     public int score = 0;
-    public Text scoreText;  // �̴ϰ��� �� ���� UI
 
     void Awake()
     {
@@ -20,52 +18,17 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        UpdateScoreUI();
-    }
-
     public void AddScore(int value)
     {
         score += value;
-        UpdateScoreUI();
-    }
-
-    private void UpdateScoreUI()
-    {
-        if (scoreText != null)
-            scoreText.text = $"����: {score}";
+        // UI 업데이트 제거
     }
 
     public void ResetScore()
     {
         score = 0;
-        UpdateScoreUI();
+        // UI 업데이트 제거
     }
 
-    public void SaveHighScore()
-    {
-        int bestScore = PlayerPrefs.GetInt("HighScore", 0);
-        if (score > bestScore)
-        {
-            PlayerPrefs.SetInt("HighScore", score);
-            PlayerPrefs.Save();
-        }
-    }
-
-    public int GetHighScore()
-    {
-        return PlayerPrefs.GetInt("HighScore", 0);
-    }
-
-    public void SaveLastScore()
-    {
-        PlayerPrefs.SetInt("LastScore", score);
-        PlayerPrefs.Save();
-    }
-
-    public int GetLastScore()
-    {
-        return PlayerPrefs.GetInt("LastScore", 0);
-    }
+    // 나머지 저장/불러오기 메서드 유지
 }

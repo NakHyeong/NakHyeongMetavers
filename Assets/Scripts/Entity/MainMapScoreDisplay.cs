@@ -1,25 +1,20 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 
 public class MainMapScoreDisplay : MonoBehaviour
 {
-    public TextMeshProUGUI miniGameNameText;   // ¹Ì´Ï°ÔÀÓ ÀÌ¸§ ÅØ½ºÆ®
+    public TextMeshProUGUI miniGameNameText;   // ë¯¸ë‹ˆê²Œì„ ì´ë¦„ í…ìŠ¤íŠ¸
     public TextMeshProUGUI lastScoreText;
     public TextMeshProUGUI bestScoreText;
 
     void Start()
     {
-        void Start()
-        {
-            int bestScore = PlayerPrefs.GetInt("HighScore", 0);
-            int lastScore = PlayerPrefs.GetInt("LastScore", 0);
+        int bestScore = PlayerPrefs.GetInt("HighScore", 0);
+        int lastScore = PlayerPrefs.GetInt("LastScore", 0);
 
-            miniGameNameText.text = "³ªÀÌÆ®·±";
+        miniGameNameText.text = "KnightRun";
 
-            bestScoreText.text = $"º£½ºÆ® Á¡¼ö: {bestScore}";
-            lastScoreText.text = $"ÀÌ¹ø Á¡¼ö: {lastScore}";
-        }
-
+        bestScoreText.text = $"BestScore: {bestScore}";
+        lastScoreText.text = $"LastScore: {lastScore}";
     }
-
 }

@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreToggleButton : MonoBehaviour
 {
-    public GameObject scorePanel; // ScorePanel ¿ÀºêÁ§Æ® ¿¬°á (Á¡¼ö UI ÀüÃ¼)
+    public GameObject scorePanel; // ScorePanel ì˜¤ë¸Œì íŠ¸ ì—°ê²° (ì ìˆ˜ UI ì „ì²´)
 
-    // ¿ÜºÎ¿¡¼­ È£Ãâ °¡´ÉÇÑ Åä±Û ÇÔ¼ö (¹öÆ°¿¡ ¿¬°á)
+    // ì™¸ë¶€ì—ì„œ í˜¸ì¶œ ê°€ëŠ¥í•œ í† ê¸€ í•¨ìˆ˜ (ë²„íŠ¼ì— ì—°ê²°)
     public void ToggleScorePanel()
     {
         if (scorePanel != null)
@@ -16,7 +16,7 @@ public class ScoreToggleButton : MonoBehaviour
         }
     }
 
-    // Exit ¹öÆ°¿¡¼­ È£ÃâÇÒ ´İ±â ÇÔ¼ö (´Ü¼øÈ÷ ²¨Áö°Ô¸¸)
+    // Exit ë²„íŠ¼ì—ì„œ í˜¸ì¶œí•  ë‹«ê¸° í•¨ìˆ˜ (ë‹¨ìˆœíˆ êº¼ì§€ê²Œë§Œ)
     public void CloseScorePanel()
     {
         if (scorePanel != null)

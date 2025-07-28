@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class ScoreZone : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class ScoreZone : MonoBehaviour
             {
                 int score = hole.GetScoreByWidth();
                 GameManager.Instance.AddScore(score);
-                Debug.Log($"Player°¡ HoleÀ» ¾ÈÀüÇÏ°Ô Åë°ú - Á¡¼ö: {score}");
+                Debug.Log($"Playerê°€ Holeì„ ì•ˆì „í•˜ê²Œ í†µê³¼ - ì ìˆ˜: {score}");
             }
         }
     }

@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MinigameZone : MonoBehaviour
 {
-    [SerializeField] private GameObject interactionPopup; // UI ÆË¾÷ (¿¹: Press Space or Click to Start)
+    [SerializeField] private GameObject interactionPopup; // UI íŒì—… (ì˜ˆ: Press Space or Click to Start)
 
     private bool isPlayerInZone = false;
 
@@ -13,7 +13,7 @@ public class MinigameZone : MonoBehaviour
     {
         if (isPlayerInZone && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
         {
-            SceneManager.LoadScene("KnightRun"); // ¾À ÀÌ¸§ °íÁ¤
+            SceneManager.LoadScene("KnightRun"); // ì”¬ ì´ë¦„ ê³ ì •
         }
     }
 
