@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 126415392}
   m_Layer: 9
   m_Name: DayBackground
-  m_TagString: BackgroudDay
+  m_TagString: BackgroundDay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 129793399}
   m_Layer: 9
   m_Name: NightBackground (1)
-  m_TagString: Background
+  m_TagString: BackgroundNight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -814,7 +814,7 @@ GameObject:
   - component: {fileID: 446107754}
   m_Layer: 9
   m_Name: NightBackground (4)
-  m_TagString: Background
+  m_TagString: BackgroundNight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1479,7 +1479,7 @@ GameObject:
   - component: {fileID: 629817807}
   m_Layer: 9
   m_Name: NightBackground
-  m_TagString: Background
+  m_TagString: BackgroundNight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1609,7 +1609,7 @@ GameObject:
   - component: {fileID: 687150576}
   m_Layer: 9
   m_Name: DayBackground (3)
-  m_TagString: Background
+  m_TagString: BackgroundDay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1775,7 +1775,7 @@ GameObject:
   - component: {fileID: 717497216}
   m_Layer: 9
   m_Name: NightBackground (3)
-  m_TagString: Background
+  m_TagString: BackgroundNight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1905,7 +1905,7 @@ GameObject:
   - component: {fileID: 786321870}
   m_Layer: 9
   m_Name: DayBackground (4)
-  m_TagString: Background
+  m_TagString: BackgroundDay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2219,7 +2219,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 280}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &982078280
@@ -2309,7 +2309,7 @@ GameObject:
   - component: {fileID: 1001727554}
   m_Layer: 9
   m_Name: DayBackground (1)
-  m_TagString: Background
+  m_TagString: BackgroundDay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2635,7 +2635,7 @@ GameObject:
   - component: {fileID: 1279695453}
   m_Layer: 9
   m_Name: DayBackground (2)
-  m_TagString: Background
+  m_TagString: BackgroundDay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3245,7 +3245,7 @@ GameObject:
   - component: {fileID: 1762522116}
   m_Layer: 9
   m_Name: NightBackground (2)
-  m_TagString: BackgroudNight
+  m_TagString: BackgroundNight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3519,7 +3519,7 @@ MonoBehaviour:
   jumpForce: 7
   moveSpeed: 3
   isDead: 0
-  godMode: 0
+  godMode: 1
 --- !u!61 &1936724845
 BoxCollider2D:
   m_ObjectHideFlags: 0
