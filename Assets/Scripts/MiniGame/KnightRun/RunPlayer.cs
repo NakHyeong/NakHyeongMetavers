@@ -14,8 +14,6 @@ public class RunPlayer : MonoBehaviour
     private bool isJumpPressed = false;
     private bool isGrounded = false;
 
-    private bool isGameOver = false; // 게임오버 상태 체크
-
     public bool godMode = false;
 
     GameManager gameManager;

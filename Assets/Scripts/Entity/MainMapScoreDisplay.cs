@@ -11,6 +11,7 @@ public class MainMapScoreDisplay : MonoBehaviour
     {
         int bestScore = PlayerPrefs.GetInt("HighScore", 0);
         int lastScore = PlayerPrefs.GetInt("LastScore", 0);
+        Debug.Log($"MainMapScoreDisplay: BestScore={bestScore}, LastScore={lastScore}");
 
         miniGameNameText.text = "KnightRun";
 
