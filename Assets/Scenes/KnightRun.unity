@@ -1040,6 +1040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 898702561}
   restartButton: {fileID: 1626670861}
+  exitButton: {fileID: 555407889}
 --- !u!114 &470827550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,7 +1139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  scoreText: {fileID: 0}
 --- !u!1001 &475484143
 PrefabInstance:
   m_ObjectHideFlags: 0

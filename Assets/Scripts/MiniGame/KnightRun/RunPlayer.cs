@@ -30,7 +30,11 @@ public class RunPlayer : MonoBehaviour
             Debug.LogError("Rigidbody2D가 없습니다.");
         if (_animator == null)
             Debug.LogError("Animator가 없습니다.");
+        _animator.SetBool("IsDie", false);
+        isDead = false;
+        _rigidbody.bodyType = RigidbodyType2D.Dynamic;
     }
+
 
     void Update()
     {
